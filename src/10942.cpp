@@ -20,7 +20,7 @@ bool leap_year(int century, int year) {
 std::array<int, 13> days = {-1, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
 bool day_valid(int century, int year, int month, int day) {
-    if (day <= 0 && day > 31) {
+    if (day <= 0 || day > 31) {
         return false;
     }
     if (month != 2) {
