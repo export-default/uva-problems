@@ -26,7 +26,7 @@ int _2expmod10(int p) {
     return tmp[(p - 1) % 4];
 }
 
-int last_nonzero_digit_of_factorial(int n) {
+int last_nonzero_digit_of_factorial_1(int n) {
     int k2 = k_component(n, 2);
     int k5 = k_component(n, 5);
     int last = 1;
@@ -48,10 +48,24 @@ int last_nonzero_digit_of_factorial(int n) {
     return last % 10;
 }
 
+// http://quantomania.blogspot.in/2011/08/last-non-zero-digit-of-factorial.html todo WHY?
+int last_nonzero_digit_of_factorial_2(int n) {
+    static int cache[] = {1, 1, 2, 6, 4, 2, 2, 4, 2, 8};
+    if (n < 10) {
+        return cache[n];
+    } else if ((n / 10) % 2 == 0) {
+        int d = 6 * last_nonzero_digit_of_factorial_2(n / 5) * last_nonzero_digit_of_factorial_2(n % 10);
+        return d % 10;
+    } else {
+        int d = 4 * last_nonzero_digit_of_factorial_2(n / 5) * last_nonzero_digit_of_factorial_2(n % 10);
+        return d % 10;
+    }
+}
+
 int main() {
     int n;
     while (std::cin >> n) {
-        std::cout << std::setw(5) << std::right << n << " -> " << last_nonzero_digit_of_factorial(n) << std::endl;
+        std::cout << std::setw(5) << std::right << n << " -> " << last_nonzero_digit_of_factorial_2(n) << std::endl;
     }
 }
 
