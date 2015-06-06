@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <iomanip>
 #include <tuple>
+#include <vector>
 
 bool leap_year(int century, int year) {
     year = century * 100 + year;
